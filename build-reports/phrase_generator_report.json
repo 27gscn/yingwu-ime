@@ -1,0 +1,26 @@
+{
+  "source_phrases": 539559,
+  "dictionary_rows": 696515,
+  "max_levels": 2,
+  "extension_rows_by_stage": {
+    "1": 127222,
+    "2": 29734
+  },
+  "decision_nodes_by_level": {
+    "1": 42688,
+    "2": 12483
+  },
+  "effective_code_collision_groups": 4406,
+  "max_code_length": 47,
+  "examples": {
+    "今天去哪了": {
+      "plain": "jintianqunale",
+      "effective": "jintianqunalezk"
+    },
+    "今天去拿了": {
+      "plain": "jintianqunale",
+      "effective": "jintianqunaless"
+    }
+  },
+  "output": "HengmaNativeSource/data/hengma_phrases.dict.yaml"
+}

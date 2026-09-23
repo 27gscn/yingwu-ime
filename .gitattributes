@@ -1,0 +1,22 @@
+# Keep LF in the working tree on every platform. MANIFEST.sha256 is computed
+# over the LF form, so a CRLF checkout would invalidate every hash in it.
+* text=auto eol=lf
+
+# Batch files are only ever run by cmd.exe, which wants CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binaries
+*.dll  binary
+*.ico  binary
+*.7z   binary
+*.cab  binary
+*.exe  binary
+*.bin  binary
+
+# Generated dictionaries are large and not worth diffing.
+data/hengma.dict.yaml          -diff
+data/hengma_fuzzy.dict.yaml    -diff
+data/hengma_phrases.dict.yaml  -diff
+data/hengma_char_codes.dict.yaml -diff
+data-tools/sources/*           -diff

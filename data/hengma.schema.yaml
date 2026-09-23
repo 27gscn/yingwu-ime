@@ -1,0 +1,108 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: hengma
+  name: "应物汉字音形衡码输入方案"
+  version: "0.57-heng"
+  author:
+    - "应物汉字音形衡码输入方案"
+  description: |
+    离线、固定词频的精确单字与静态词组输入方案。
+    单字：全拼 → 结构码 → 可选部首码。
+    词组：连续全拼 → 最多两组歧义字“结构码＋部首码”。
+    支持 2 至 12 字词组，不使用语言模型或用户学习。
+    结构码：Z左右、S上下、B包围、D独体、P品字/交叠/特殊。
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [中文, 西文]
+
+engine:
+  processors:
+    - ascii_composer
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+  filters:
+    - uniquifier
+
+# Shift tap switches between Chinese and Western input. The TSF layer drives
+# ascii_mode directly as well, so the toggle also works while idle.
+ascii_composer:
+  good_old_caps_lock: true
+  switch_key:
+    Shift_L: commit_code
+    Shift_R: commit_code
+    Control_L: noop
+    Control_R: noop
+    Caps_Lock: clear
+    Eisu_toggle: clear
+
+# Chinese text wants Chinese marks: a comma typed while composing Chinese
+# comes out as ，not ,. In Western mode the text service never sees these
+# keys at all, so ASCII punctuation still passes straight through.
+punctuator:
+  half_shape:
+    ",": "，"
+    ".": "。"
+    ";": "；"
+    ":": "："
+    "?": "？"
+    "!": "！"
+    "\\": "、"
+    "<": "《"
+    ">": "》"
+    "(": "（"
+    ")": "）"
+    "[": "【"
+    "]": "】"
+    "{": "「"
+    "}": "」"
+    "'": { pair: ["‘", "’"] }
+    '"': { pair: ["“", "”"] }
+    "^": "……"
+    "_": "——"
+    "~": "～"
+    "$": "￥"
+    "@": "＠"
+    "#": "＃"
+    "%": "％"
+    "&": "＆"
+    "*": "＊"
+    "+": "＋"
+    "-": "－"
+    "=": "＝"
+    "/": "／"
+    "|": "｜"
+    "`": "｀"
+
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyz
+  initials: abcdefghijklmnopqrstuvwxyz
+  delimiter: " '"
+  max_code_length: 96
+  auto_select: false
+
+translator:
+  dictionary: hengma
+  enable_charset_filter: true
+  enable_completion: true
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: false
+  max_phrase_length: 12
+
+menu:
+  page_size: 9

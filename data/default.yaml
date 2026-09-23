@@ -1,0 +1,15 @@
+# Minimal global configuration for the embedded Hengma librime runtime.
+config_version: "0.3.0"
+
+schema_list:
+  - schema: hengma
+
+switcher:
+  caption: "〔方案选单〕"
+  hotkeys:
+    - Control+grave
+  save_options:
+    - ascii_mode
+
+menu:
+  page_size: 9

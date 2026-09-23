@@ -1,0 +1,75 @@
+name: Windows build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-and-build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Test dictionary compiler and runtime data
+        shell: pwsh
+        run: ./scripts/run-tests.ps1
+
+      - name: Build x64 and x86 TSF DLLs
+        shell: pwsh
+        run: ./scripts/build.ps1 -Arch all -Configuration Release
+
+      # Exercises the shipping RimeEngine: candidate annotation, the reading
+      # chosen for polyphonic characters, and the Western-mode toggle. Runs
+      # from dist\Yingwu\x64 so the engine resolves rime.dll and ..\data the
+      # same way the text service does.
+      - name: Engine behaviour test
+        shell: pwsh
+        run: |
+          $vs = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+                  -latest -property installationPath
+          $bat = @"
+          call "$vs\VC\Auxiliary\Build\vcvars64.bat" >nul 2>&1
+          cl /nologo /W4 /EHsc /std:c++17 /MT /utf-8 /DUNICODE /D_UNICODE /DNOMINMAX /DWIN32_LEAN_AND_MEAN ^
+             /I "${{ github.workspace }}\src" ^
+             /I "${{ github.workspace }}\third_party\librime\x64\dist\include" ^
+             /Fe:"${{ github.workspace }}\dist\Yingwu\x64\engine-test.exe" ^
+             /Fo:"${{ github.workspace }}\build\enginetest\\" ^
+             "${{ github.workspace }}\tools\engine-test.cpp" ^
+             "${{ github.workspace }}\src\RimeEngine.cpp" ^
+             "${{ github.workspace }}\src\Utf.cpp" ^
+             /link user32.lib shell32.lib ole32.lib advapi32.lib
+          "@
+          New-Item -ItemType Directory -Force build\enginetest | Out-Null
+          Set-Content build\enginetest.bat $bat -Encoding ASCII
+          & cmd /c build\enginetest.bat
+          if ($LASTEXITCODE -ne 0) { throw 'engine-test did not compile.' }
+          Push-Location dist\Yingwu\x64
+          ./engine-test.exe
+          $code = $LASTEXITCODE
+          Pop-Location
+          Remove-Item dist\Yingwu\x64\engine-test.exe -Force
+          if ($code -ne 0) { throw 'engine-test reported failures.' }
+
+      - name: Build the single-file installer
+        shell: pwsh
+        run: ./installer/setup/make-setup.ps1 -SkipBuild
+
+      - name: Upload unsigned alpha installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: YingwuSetup-unsigned-alpha
+          path: |
+            dist/YingwuSetup-*.exe
+            dist/YingwuSetup-*.exe.sha256
+          if-no-files-found: error
+
+      - name: Upload unpacked payload
+        uses: actions/upload-artifact@v4
+        with:
+          name: YingwuIME-unsigned-alpha
+          path: dist/Yingwu
+          if-no-files-found: error

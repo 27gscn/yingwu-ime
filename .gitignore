@@ -1,0 +1,24 @@
+/build/
+/dist/
+__pycache__/
+*.py[cod]
+*.pdb
+*.obj
+*.o
+*.ilk
+*.exp
+*.user
+*.suo
+.vs/
+
+# Installer build products (see installer/setup/make-setup.ps1)
+/installer/setup/payload.cab
+/installer/setup/payload.ddf
+/installer/setup/payload_info.h
+/installer/setup/setup.u16.rc
+/installer/setup/*.res
+/installer/setup/*.exe
+/installer/setup/obj_*/
+
+# 发布用安装包（release/ 下的成品是有意提交的）
+!/release/

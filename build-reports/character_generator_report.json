@@ -1,0 +1,22 @@
+{
+  "source_entries": 8757,
+  "main_rows": 26098,
+  "shortcut_rows": 5783,
+  "shortcut_skipped_reserved": 141,
+  "fuzzy_rows": 70665,
+  "structure_counts": {
+    "z": 5815,
+    "s": 1985,
+    "b": 731,
+    "p": 154,
+    "d": 72
+  },
+  "missing_structure_entries": 2,
+  "entries_with_cue": 8584,
+  "output": {
+    "main": "data/hengma.dict.yaml",
+    "shortcut": "data/hengma_shortcut.dict.yaml",
+    "fuzzy": "data/hengma_fuzzy.dict.yaml",
+    "metadata": "data/hengma_codes.jsonl"
+  }
+}

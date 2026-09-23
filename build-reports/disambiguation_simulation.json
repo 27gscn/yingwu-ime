@@ -1,0 +1,183 @@
+{
+  "method": "Fixed source weight proxy; automatic highest-weight candidate; weighted character edit distance.",
+  "plain_continuous_pinyin": {
+    "records": 539559,
+    "codes": 453034,
+    "weighted_wrong_character_rate": 0.06660103741076337,
+    "weighted_wrong_character_rate_if_scan_top3": 0.01086044841244848,
+    "weighted_top1_selection_error": 0.11023578500505316,
+    "weighted_top3_miss": 0.016547244841083386,
+    "weighted_collision_mass": 0.5311667771658377,
+    "code_collision_rate": 0.09734810190846603,
+    "max_candidates": 32,
+    "length_breakdown": [
+      {
+        "length": "2",
+        "weighted_top1_selection_error": 0.16656494540779132,
+        "weighted_wrong_character_rate": 0.13133698278208913,
+        "records": 138954
+      },
+      {
+        "length": "3",
+        "weighted_top1_selection_error": 0.024497950955478798,
+        "weighted_wrong_character_rate": 0.010312788716612606,
+        "records": 156972
+      },
+      {
+        "length": "4",
+        "weighted_top1_selection_error": 0.0031507604594233074,
+        "weighted_wrong_character_rate": 0.0009652445687897284,
+        "records": 168956
+      },
+      {
+        "length": "5",
+        "weighted_top1_selection_error": 0.0057479353337628325,
+        "weighted_wrong_character_rate": 0.0011552553677398126,
+        "records": 37603
+      },
+      {
+        "length": "6–12",
+        "weighted_top1_selection_error": 0.0009327371461855805,
+        "weighted_wrong_character_rate": 0.00016052173453508177,
+        "records": 37074
+      }
+    ],
+    "wrong_character_pct": 6.660103741076337,
+    "relative_reduction_vs_plain": 0.0
+  },
+  "v0_2_first_difference_pair": {
+    "records": 539559,
+    "codes": 518179,
+    "weighted_wrong_character_rate": 0.012532407659620147,
+    "weighted_wrong_character_rate_if_scan_top3": 0.0005584419242482064,
+    "weighted_top1_selection_error": 0.028737931613714074,
+    "weighted_top3_miss": 0.0012737220570394614,
+    "weighted_collision_mass": 0.18566390427104967,
+    "code_collision_rate": 0.03069788625166207,
+    "max_candidates": 13,
+    "length_breakdown": [
+      {
+        "length": "2",
+        "weighted_top1_selection_error": 0.04484463444857345,
+        "weighted_wrong_character_rate": 0.025272142865549383,
+        "records": 138954
+      },
+      {
+        "length": "3",
+        "weighted_top1_selection_error": 0.002500553601123112,
+        "weighted_wrong_character_rate": 0.0009283762368800976,
+        "records": 156972
+      },
+      {
+        "length": "4",
+        "weighted_top1_selection_error": 0.00012687096473917858,
+        "weighted_wrong_character_rate": 3.806051471367325e-05,
+        "records": 168956
+      },
+      {
+        "length": "5",
+        "weighted_top1_selection_error": 9.60527991566984e-06,
+        "weighted_wrong_character_rate": 1.9275241850922564e-06,
+        "records": 37603
+      },
+      {
+        "length": "6–12",
+        "weighted_top1_selection_error": 3.3560750067884726e-07,
+        "weighted_wrong_character_rate": 4.9551392046637373e-08,
+        "records": 37074
+      }
+    ],
+    "wrong_character_pct": 1.2532407659620148,
+    "relative_reduction_vs_plain": 0.8118286419124938
+  },
+  "v0_3_one_discriminating_pair": {
+    "records": 539559,
+    "codes": 517629,
+    "weighted_wrong_character_rate": 0.01259034462815519,
+    "weighted_wrong_character_rate_if_scan_top3": 0.000625758712990122,
+    "weighted_top1_selection_error": 0.02887602646240428,
+    "weighted_top3_miss": 0.0013833183570665097,
+    "weighted_collision_mass": 0.18764063308185333,
+    "code_collision_rate": 0.0309623301631091,
+    "max_candidates": 18,
+    "length_breakdown": [
+      {
+        "length": "2",
+        "weighted_top1_selection_error": 0.04505445609452641,
+        "weighted_wrong_character_rate": 0.025393550622795007,
+        "records": 138954
+      },
+      {
+        "length": "3",
+        "weighted_top1_selection_error": 0.0025206860245287066,
+        "weighted_wrong_character_rate": 0.000922026212286809,
+        "records": 156972
+      },
+      {
+        "length": "4",
+        "weighted_top1_selection_error": 0.00013940693354208555,
+        "weighted_wrong_character_rate": 3.879112403827439e-05,
+        "records": 168956
+      },
+      {
+        "length": "5",
+        "weighted_top1_selection_error": 2.1582233884487323e-05,
+        "weighted_wrong_character_rate": 4.31644677690682e-06,
+        "records": 37603
+      },
+      {
+        "length": "6–12",
+        "weighted_top1_selection_error": 4.4048484459935366e-07,
+        "weighted_wrong_character_rate": 6.503620206121156e-08,
+        "records": 37074
+      }
+    ],
+    "wrong_character_pct": 1.259034462815519,
+    "relative_reduction_vs_plain": 0.8109587310103901
+  },
+  "v0_3_up_to_two_pairs": {
+    "records": 539559,
+    "codes": 533966,
+    "weighted_wrong_character_rate": 0.002185603841736789,
+    "weighted_wrong_character_rate_if_scan_top3": 0.00013780970035699733,
+    "weighted_top1_selection_error": 0.0048898389621822025,
+    "weighted_top3_miss": 0.0002455129461904626,
+    "weighted_collision_mass": 0.03660975643089168,
+    "code_collision_rate": 0.00825146170355416,
+    "max_candidates": 18,
+    "length_breakdown": [
+      {
+        "length": "2",
+        "weighted_top1_selection_error": 0.007597610140469557,
+        "weighted_wrong_character_rate": 0.004391374690024201,
+        "records": 138954
+      },
+      {
+        "length": "3",
+        "weighted_top1_selection_error": 0.000478750613391532,
+        "weighted_wrong_character_rate": 0.00017606070503450215,
+        "records": 156972
+      },
+      {
+        "length": "4",
+        "weighted_top1_selection_error": 8.776012463029836e-05,
+        "weighted_wrong_character_rate": 2.5860650037299216e-05,
+        "records": 168956
+      },
+      {
+        "length": "5",
+        "weighted_top1_selection_error": 2.1582233884487323e-05,
+        "weighted_wrong_character_rate": 4.31644677690682e-06,
+        "records": 37603
+      },
+      {
+        "length": "6–12",
+        "weighted_top1_selection_error": 2.097546879520351e-07,
+        "weighted_wrong_character_rate": 3.096962002914836e-08,
+        "records": 37074
+      }
+    ],
+    "wrong_character_pct": 0.2185603841736789,
+    "relative_reduction_vs_plain": 0.9671836366713474
+  }
+}
